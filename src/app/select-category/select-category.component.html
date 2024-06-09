@@ -1,5 +1,47 @@
 <div>
-  <h1>Choose a category</h1>
-  <button mat-button (click)="selectCategory('people')">People</button>
-  <button mat-button (click)="selectCategory('starships')">Starships</button>
+  <h1>Choose a category and attributes</h1>
+
+  <mat-card>
+    <mat-card-header>
+      Select a category
+    </mat-card-header>
+    <mat-card-content>
+      <mat-radio-group aria-label="Select a category" [(ngModel)]="category">
+        <mat-radio-button value="people">People</mat-radio-button>
+        <mat-radio-button value="starships">Starships</mat-radio-button>
+      </mat-radio-group>
+    </mat-card-content>
+  </mat-card>
+
+  @if (category === 'people') {
+    <mat-card>
+      <mat-card-header>
+        Select an attribute of people
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group aria-label="Select an attribute of people" [(ngModel)]="peopleAttribute">
+          <mat-radio-button value="height">Height</mat-radio-button>
+          <mat-radio-button value="mass">Mass</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @if (category === 'starships') {
+    <mat-card>
+      <mat-card-header>
+        Select an attribute of starships
+      </mat-card-header>
+      <mat-card-content>
+        <mat-radio-group aria-label="Select an attribute of starship" [(ngModel)]="starshipAttribute">
+          <mat-radio-button value="cost_in_credits">Cost</mat-radio-button>
+          <mat-radio-button value="length">Length</mat-radio-button>
+          <mat-radio-button value="passengers">Passengers</mat-radio-button>
+          <mat-radio-button value="cargo_capacity">Capacity</mat-radio-button>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  <button mat-button (click)="battle()">Let's go!</button>
 </div>

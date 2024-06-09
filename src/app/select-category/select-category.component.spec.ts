@@ -20,4 +20,14 @@ describe('SelectCategoryComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  // blokowanie przycisku zanim dane będą wypełnione
+  it('should pass to battle only with complete gathered informations', () => {
+
+  });
+
+  // parametryzowany
+  it('should show only attributes connected to chosen category', () => {
+
+  });
 });
