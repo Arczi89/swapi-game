@@ -6,15 +6,22 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SwapiService {
+
   private apiUrl = 'https://www.swapi.tech/api';
+
+  private category = '';
 
   constructor(private http: HttpClient) {}
 
-  getPeople(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/people`);
+  getItems(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${this.category}`);
   }
 
-  getSpaceships(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/starships`);
+  isCategorySet() {
+    return !!this.category;
+  }
+
+  setCategory(category: string) {
+    this.category = category;
   }
 }

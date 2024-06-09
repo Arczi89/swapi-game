@@ -1,3 +1,4 @@
+import { SwapiService } from './../swapi.service';
 import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
@@ -10,9 +11,10 @@ import { Router } from '@angular/router';
   styleUrl: './select-category.component.css'
 })
 export class SelectCategoryComponent {
-  constructor(private router: Router) {}
+  constructor(protected router: Router, protected swapiService: SwapiService) {}
 
   selectCategory(category: string) {
+    this.swapiService.setCategory(category);
     this.router.navigate(['/battle']);
   }
 }
