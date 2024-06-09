@@ -1,0 +1,12 @@
+<button mat-button (click)="goBack()">Back</button>
+@if (items.length) {
+  @for (item of items; track $index) {
+    <mat-card [ngClass]="{'winner': winnerIndex === $index}">
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-content>
+      </mat-card-content>
+    </mat-card>
+  }
+  <button mat-button (click)="play()">{{ playButtonLabel }}</button>
+}
+
