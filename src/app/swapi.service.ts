@@ -20,6 +20,10 @@ export class SwapiService {
     return this.http.get(`${this.apiUrl}/${this.category}`);
   }
 
+  getItem(id: number): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${this.category}/${id}`)
+  }
+
   getCategory(): string {
     return this.category;
   }
@@ -39,6 +43,7 @@ export class SwapiService {
 
   setAttribute(attribute: any) {
     this.attribute = attribute;
+    localStorage.setItem('attribute', attribute);
   }
 
   private initCategoryAndAttribute(): void {
@@ -46,5 +51,3 @@ export class SwapiService {
     this.attribute = localStorage.getItem('attribute') || '';
   }
 }
-
-

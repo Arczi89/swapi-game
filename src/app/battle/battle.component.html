@@ -1,9 +1,12 @@
 <button mat-button (click)="goBack()">Back</button>
-@if (items.length) {
-  @for (item of items; track $index) {
+@if (opponent1 && opponent2) {
+  @for (item of [opponent1, opponent2]; track $index) {
     <mat-card [ngClass]="{'winner': winnerIndex === $index}">
-      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-title>{{ item.properties.name }}</mat-card-title>
       <mat-card-content>
+        @for (prop of propertiesOf(item); track $index) {
+          <div class="item-property">{{ prop[0] }}: {{ prop[1] }}</div>
+        }
       </mat-card-content>
     </mat-card>
   }
