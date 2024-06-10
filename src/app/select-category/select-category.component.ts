@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [MatButtonModule, MatRadioModule, MatCardModule, FormsModule],
   templateUrl: './select-category.component.html',
-  styleUrl: './select-category.component.css'
+  styleUrl: './select-category.component.scss'
 })
 export class SelectCategoryComponent {
   category = '';

@@ -1,15 +1,18 @@
-<button mat-button (click)="goBack()">Back</button>
-@if (opponent1 && opponent2) {
-  @for (item of [opponent1, opponent2]; track $index) {
-    <mat-card [ngClass]="{'winner': winnerIndex === $index}">
-      <mat-card-title>{{ item.properties.name }}</mat-card-title>
-      <mat-card-content>
-        @for (prop of propertiesOf(item); track $index) {
-          <div class="item-property">{{ prop[0] }}: {{ prop[1] }}</div>
-        }
-      </mat-card-content>
-    </mat-card>
+<div class="buttons">
+  <button mat-button id="battle-back" class="buttons__back" (click)="goBack()">&#8592; Back</button>
+  <button mat-flat-button id="battle-play" class="buttons__play" (click)="play()">{{ playButtonLabel }}</button>
+</div>
+<div class="card">
+  @if (opponent1 && opponent2) {
+    @for (item of [opponent1, opponent2]; track $index) {
+      <mat-card [ngClass]="{'card__item--winner': winnerIndex === $index}" class="card__item">
+        <mat-card-title class="card__item-title">{{ item.properties.name }}</mat-card-title>
+        <mat-card-content class="card__item-content">
+          @for (prop of propertiesOf(item); track $index) {
+            <div class="card__item-property">{{ prop[0] }}: {{ prop[1] }}</div>
+          }
+        </mat-card-content>
+      </mat-card>
+    }
   }
-  <button mat-button (click)="play()">{{ playButtonLabel }}</button>
-}
-
+</div>

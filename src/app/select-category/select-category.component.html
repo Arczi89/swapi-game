@@ -1,7 +1,7 @@
-<div>
-  <h1>Choose a category and attributes</h1>
+<div class="select-category">
+  <h1 class="header">Choose a category and attributes</h1>
 
-  <mat-card>
+  <mat-card class="card">
     <mat-card-header>
       Select a category
     </mat-card-header>
@@ -14,7 +14,7 @@
   </mat-card>
 
   @if (category === 'people') {
-    <mat-card>
+    <mat-card class="card">
       <mat-card-header>
         Select an attribute of people
       </mat-card-header>
@@ -28,7 +28,7 @@
   }
 
   @if (category === 'starships') {
-    <mat-card>
+    <mat-card class="card">
       <mat-card-header>
         Select an attribute of starships
       </mat-card-header>
@@ -42,6 +42,5 @@
       </mat-card-content>
     </mat-card>
   }
-
-  <button mat-button id="battle-button" [disabled]="!isSelectionReady()" (click)="battle()">Let's go!</button>
 </div>
+<button mat-flat-button id="battle-button" [disabled]="!isSelectionReady()" (click)="battle()">Let's go!</button>

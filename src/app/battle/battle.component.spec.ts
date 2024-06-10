@@ -3,10 +3,9 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BattleComponent } from './battle.component';
 import { SwapiService } from '../swapi.service';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { of } from 'rxjs';
 
-fdescribe('BattleComponent', () => {
+describe('BattleComponent', () => {
   let component: BattleComponent;
   let fixture: ComponentFixture<BattleComponent>;
 
@@ -50,8 +49,9 @@ fdescribe('BattleComponent', () => {
   it('should winner be determined after play button is pressed', () => {
     component.opponent1 = { properties: { mass: 100, height: 200 } };
     component.opponent2 = { properties: { mass: 50, height: 150 } };
+
     component.play();
-    fixture.detectChanges();
+
     expect(component.winnerIndex).toBe(0);
   });
 

@@ -11,7 +11,7 @@ import { forkJoin, switchMap } from 'rxjs';
   standalone: true,
   imports: [ CommonModule, MatCardModule, MatButtonModule ],
   templateUrl: './battle.component.html',
-  styleUrl: './battle.component.css'
+  styleUrl: './battle.component.scss'
 })
 export class BattleComponent implements OnInit {
   items: any[] = [];
