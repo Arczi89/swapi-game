@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { forkJoin, switchMap } from 'rxjs';
 import { MatProgressBar } from '@angular/material/progress-bar';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-battle',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatButtonModule, MatProgressBar ],
+  imports: [ CommonModule, MatCardModule, MatButtonModule, MatProgressBar, MatProgressSpinner ],
   templateUrl: './battle.component.html',
   styleUrl: './battle.component.scss'
 })
