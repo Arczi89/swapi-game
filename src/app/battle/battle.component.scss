@@ -44,3 +44,34 @@
     font-size: 2rem;
   }
 }
+
+.counter {
+  display: flex;
+
+  &__opponent {
+    font-size: 2rem;
+    margin: 2rem;
+    border-radius: 50%;
+    padding: 2rem;
+    &--no1 {
+      color:orangered;
+      border: 2px solid orangered;
+    }
+    &--no2 {
+      color:blue;
+      border: 2px solid blue;
+    }
+  }
+  &__progressbar {
+    margin: auto;
+    width: 80%;
+  }
+}
+
+:host {
+  --mdc-linear-progress-track-height: 2rem;
+  --mdc-linear-progress-active-indicator-height: 2rem;
+  --mdc-linear-progress-active-indicator-color: orangered;
+  --mdc-linear-progress-track-color: blue;
+}
+

@@ -73,7 +73,7 @@ describe('SelectCategoryComponent', () => {
 
   [
     ['people', ['height', 'mass']],
-    ['starships', ['cost_in_credits', 'length', 'passengers', 'cargo_capacity']]
+    ['starships', ['cost_in_credits', 'length', 'passengers', 'cargo_capacity', 'crew']]
   ].forEach(([category, attributes]) => {
     it(`should show only attributes connected to ${category} category`, () => {
       component.category = category as string;

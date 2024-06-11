@@ -5,17 +5,19 @@ import { SwapiService } from '../swapi.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { forkJoin, switchMap } from 'rxjs';
+import { MatProgressBar } from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-battle',
   standalone: true,
-  imports: [ CommonModule, MatCardModule, MatButtonModule ],
+  imports: [ CommonModule, MatCardModule, MatButtonModule, MatProgressBar ],
   templateUrl: './battle.component.html',
   styleUrl: './battle.component.scss'
 })
 export class BattleComponent implements OnInit {
   items: any[] = [];
   winnerIndex: number | null = null;
+  counter =  [0, 0]
 
   readonly PLAY = 'PLAY';
   readonly PLAY_AGAIN = 'PLAY AGAIN'
@@ -39,6 +41,7 @@ export class BattleComponent implements OnInit {
     const value1 = Number(this.opponent1.properties[this.attribute]);
     const value2 = Number(this.opponent2.properties[this.attribute]);
     this.winnerIndex = value1 > value2 ? 0 : 1;
+    this.counter[this.winnerIndex]++;
   }
 
   play() {
@@ -91,5 +94,10 @@ export class BattleComponent implements OnInit {
 
   propertiesOf(item: any) {
     return Object.entries(item.properties);
+  }
+
+  ratio() {
+    const sum = this.counter[0] + this.counter[1];
+    return sum != 0 ? (this.counter[0] / sum) * 100 : 50;
   }
 }
