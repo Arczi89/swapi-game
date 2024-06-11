@@ -47,25 +47,21 @@ describe('SelectCategoryComponent', () => {
     expect(button.disabled).toBeTruthy();
 
     const categoryRadio = fixture.debugElement.query(By.css('#choose-category input[value="people"]')).nativeElement;
-    console.log(categoryRadio);
     categoryRadio.click();
     fixture.detectChanges();
     expect(button.disabled).toBeTruthy();
 
     const heightRadio = fixture.debugElement.query(By.css('#attribute-people input[value="height"]')).nativeElement;
-    console.log(heightRadio);
     heightRadio.click();
     fixture.detectChanges();
     expect(button.disabled).toBeFalsy();
 
     const starshipsRadio = fixture.debugElement.query(By.css('#choose-category input[value="starships"]')).nativeElement;
-    console.log(starshipsRadio);
     starshipsRadio.click();
     fixture.detectChanges();
     expect(button.disabled).toBeTruthy();
 
     const lengthRadio = fixture.debugElement.query(By.css('#attribute-starships input[value="length"]')).nativeElement;
-    console.log(lengthRadio);
     lengthRadio.click();
     fixture.detectChanges();
     expect(button.disabled).toBeFalsy();
@@ -84,8 +80,6 @@ describe('SelectCategoryComponent', () => {
 
       (attributes as []).forEach((attribute: string) => {
         const radioInputs = fixture.debugElement.queryAll(By.css(`#attribute-${category} input`)).map(input => input.nativeElement.value);
-        console.log(radioInputs);
-        console.log(attribute);
         expect(radioInputs.includes(attribute)).toBeTrue;
       });
     });

@@ -12,6 +12,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "sourceMap": true,
+    "inlineSourceMap": false,
     "declaration": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
@@ -29,5 +30,10 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "exclude": [
+    "./cypress.config.ts",
+    "cypress",
+    "**/*.cy.tsx"
+  ]
 }

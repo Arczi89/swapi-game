@@ -20,7 +20,7 @@ export class SelectCategoryComponent {
 
   constructor(protected router: Router, protected swapiService: SwapiService) {}
 
-  battle() {
+  battle(): void {
     this.swapiService.setCategory(this.category);
     this.swapiService.setAttribute(this.category === 'people' ? this.peopleAttribute : this.starshipsAttribute)
     this.router.navigate(['/battle']);
@@ -30,11 +30,11 @@ export class SelectCategoryComponent {
     return !!this.category && (!!this.peopleAttribute || !!this.starshipsAttribute)
   }
 
-  onCategoryChange() {
+  onCategoryChange(): void {
     this.clearAtributes();
   }
 
-  private clearAtributes() {
+  private clearAtributes(): void {
     this.peopleAttribute = '';
     this.starshipsAttribute = '';
   }

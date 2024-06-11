@@ -16,13 +16,13 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
   styleUrl: './battle.component.scss'
 })
 export class BattleComponent implements OnInit {
-  items: any[] = [];
-  winnerIndex: number | null = null;
-  counter =  [0, 0]
 
   readonly PLAY = 'PLAY';
   readonly PLAY_AGAIN = 'PLAY AGAIN'
 
+  items: any[] = [];
+  winnerIndex: number | null = null;
+  counter =  [0, 0]
   playButtonLabel = this.PLAY;
   opponent1: any;
   opponent2: any;
@@ -38,14 +38,14 @@ export class BattleComponent implements OnInit {
     this.loadItems();
   }
 
-  combat() {
+  combat(): void {
     const value1 = Number(this.opponent1.properties[this.attribute]);
     const value2 = Number(this.opponent2.properties[this.attribute]);
     this.winnerIndex = value1 > value2 ? 0 : 1;
     this.counter[this.winnerIndex]++;
   }
 
-  play() {
+  play(): void {
     if (this.playButtonLabel == this.PLAY) {
       this.combat();
       this.playButtonLabel = this.PLAY_AGAIN;
@@ -54,7 +54,20 @@ export class BattleComponent implements OnInit {
     }
   }
 
-  private resetBattle() {
+  goBack(): void {
+    this.router.navigate(['/']);
+  }
+
+  propertiesOf(item: any) {
+    return Object.entries(item.properties);
+  }
+
+  ratio(): number {
+    const sum = this.counter[0] + this.counter[1];
+    return sum != 0 ? (this.counter[0] / sum) * 100 : 50;
+  }
+
+  private resetBattle(): void {
     this.opponent1 = null;
     this.opponent2 = null;
     this.winnerIndex = null;
@@ -62,11 +75,7 @@ export class BattleComponent implements OnInit {
     this.playButtonLabel = this.PLAY;
   }
 
-  goBack() {
-    this.router.navigate(['/']);
-  }
-
-  private loadItems() {
+  private loadItems(): void {
     if (this.swapiService.isCategorySet()) {
       this.swapiService.getItems().pipe(
         switchMap(response => {
@@ -91,14 +100,5 @@ export class BattleComponent implements OnInit {
       index2 = Math.floor(Math.random() * this.items.length);
     }
     return [index1, index2];
-  }
-
-  propertiesOf(item: any) {
-    return Object.entries(item.properties);
-  }
-
-  ratio() {
-    const sum = this.counter[0] + this.counter[1];
-    return sum != 0 ? (this.counter[0] / sum) * 100 : 50;
   }
 }
