@@ -25,7 +25,7 @@ describe('BattleComponent', () => {
     })
   };
 
-  let mockRouter = { navigate: jasmine.createSpy('navigate') };
+  const mockRouter = { navigate: jasmine.createSpy('navigate') };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({

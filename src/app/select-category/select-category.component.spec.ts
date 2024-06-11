@@ -13,8 +13,8 @@ describe('SelectCategoryComponent', () => {
   let component: SelectCategoryComponent;
   let fixture: ComponentFixture<SelectCategoryComponent>;
 
-  let mockRouter = { navigate: jasmine.createSpy('navigate') };
-  let mockSwapiService = {
+  const mockRouter = { navigate: jasmine.createSpy('navigate') };
+  const mockSwapiService = {
     setCategory: jasmine.createSpy('setCategory'),
     setAttribute: jasmine.createSpy('setAttribute')
   };
