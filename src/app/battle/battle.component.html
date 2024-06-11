@@ -11,7 +11,7 @@
   @if (opponent1 && opponent2) {
     @for (item of [opponent1, opponent2]; track $index) {
       <mat-card [ngClass]="{'card__item--winner': winnerIndex === $index}" class="card__item">
-        <mat-card-title class="card__item-title">{{ item.properties.name }}</mat-card-title>
+        <mat-card-title class="card__item-title">{{ item.name }}</mat-card-title>
         <mat-card-content class="card__item-content">
           @for (prop of propertiesOf(item); track $index) {
             <div class="card__item-property">{{ prop[0] }}: {{ prop[1] }}</div>

@@ -41,7 +41,7 @@ export class SwapiService {
     localStorage.setItem('category', category);
   }
 
-  setAttribute(attribute: any) {
+  setAttribute(attribute: string) {
     this.attribute = attribute;
     localStorage.setItem('attribute', attribute);
   }

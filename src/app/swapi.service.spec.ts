@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { SwapiService } from './swapi.service';
-import { HttpClientTestingModule, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('SwapiService', () => {

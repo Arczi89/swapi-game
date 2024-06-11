@@ -1,3 +1,4 @@
+import { Item } from './../types/item';
 import { MatCardModule } from '@angular/material/card';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -18,14 +19,15 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 export class BattleComponent implements OnInit {
 
   readonly PLAY = 'PLAY';
-  readonly PLAY_AGAIN = 'PLAY AGAIN'
+  readonly PLAY_AGAIN = 'PLAY AGAIN';
+  readonly EMPTY_ITEM = { uid: 0 };
 
-  items: any[] = [];
+  items: Item[] = [];
   winnerIndex: number | null = null;
-  counter =  [0, 0]
+  counter =  [0, 0];
   playButtonLabel = this.PLAY;
-  opponent1: any;
-  opponent2: any;
+  opponent1: Item = this.EMPTY_ITEM;
+  opponent2: Item = this.EMPTY_ITEM;
   attribute = "";
 
   constructor(
@@ -39,10 +41,12 @@ export class BattleComponent implements OnInit {
   }
 
   combat(): void {
-    const value1 = Number(this.opponent1.properties[this.attribute]);
-    const value2 = Number(this.opponent2.properties[this.attribute]);
-    this.winnerIndex = value1 > value2 ? 0 : 1;
-    this.counter[this.winnerIndex]++;
+    if (this.opponent1 && this.opponent2) {
+      const value1 = Number(this.opponent1[this.attribute]);
+      const value2 = Number(this.opponent2[this.attribute]);
+      this.winnerIndex = value1 > value2 ? 0 : 1;
+      this.counter[this.winnerIndex]++;
+    }
   }
 
   play(): void {
@@ -58,8 +62,8 @@ export class BattleComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  propertiesOf(item: any) {
-    return Object.entries(item.properties);
+  propertiesOf(item: Item) {
+    return Object.entries(item);
   }
 
   ratio(): number {
@@ -68,8 +72,8 @@ export class BattleComponent implements OnInit {
   }
 
   private resetBattle(): void {
-    this.opponent1 = null;
-    this.opponent2 = null;
+    this.opponent1 = this.EMPTY_ITEM;
+    this.opponent2 = this.EMPTY_ITEM;
     this.winnerIndex = null;
     this.loadItems();
     this.playButtonLabel = this.PLAY;
@@ -84,16 +88,19 @@ export class BattleComponent implements OnInit {
           return forkJoin([
             this.swapiService.getItem(this.items[index1].uid),
             this.swapiService.getItem(this.items[index2].uid)
-          ])
+          ]);
         })
-      ).subscribe(opponents => {
-        this.opponent1 = opponents[0].result;
-        this.opponent2 = opponents[1].result;
+      ).subscribe(results => {
+        this.opponent1 = results[0].result.properties as Item;
+        this.opponent2 = results[1].result.properties as Item;
       });
     }
   }
 
-  private drawOpponentsIndices(): number[] {
+  private drawOpponentsIndices(): [number, number] {
+    if (this.items.length === 0) {
+      return [0, 0];
+    }
     const index1 = Math.floor(Math.random() * this.items.length);
     let index2 = Math.floor(Math.random() * this.items.length);
     while(index1 == index2) {

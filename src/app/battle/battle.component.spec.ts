@@ -47,8 +47,8 @@ describe('BattleComponent', () => {
   });
 
   it('should winner be determined after play button is pressed', () => {
-    component.opponent1 = { properties: { mass: 100, height: 200 } };
-    component.opponent2 = { properties: { mass: 50, height: 150 } };
+    component.opponent1 = { uid: 0, mass: 100, height: 200 };
+    component.opponent2 = { uid: 1, mass: 50, height: 150 };
 
     component.play();
 
@@ -57,8 +57,8 @@ describe('BattleComponent', () => {
 
   it('should play again button reload into new opponents', () => {
 
-    const opponent1 = { properties: { mass: 100, height: 200 } };
-    const opponent2 = { properties: { mass: 50, height: 150 } };
+    const opponent1 = { uid: 0, mass: 100, height: 200 };
+    const opponent2 = { uid: 1, mass: 50, height: 150 };
     component.opponent1 = opponent1;
     component.opponent2 = opponent2;
 
