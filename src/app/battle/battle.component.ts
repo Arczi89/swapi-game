@@ -20,14 +20,13 @@ export class BattleComponent implements OnInit {
 
   readonly PLAY = 'PLAY';
   readonly PLAY_AGAIN = 'PLAY AGAIN';
-  readonly EMPTY_ITEM = { uid: 0 };
 
   items: Item[] = [];
   winnerIndex: number | null = null;
   counter =  [0, 0];
   playButtonLabel = this.PLAY;
-  opponent1: Item = this.EMPTY_ITEM;
-  opponent2: Item = this.EMPTY_ITEM;
+  opponent1: any;
+  opponent2: any;
   attribute = "";
 
   constructor(
@@ -72,8 +71,8 @@ export class BattleComponent implements OnInit {
   }
 
   private resetBattle(): void {
-    this.opponent1 = this.EMPTY_ITEM;
-    this.opponent2 = this.EMPTY_ITEM;
+    this.opponent1 = undefined;
+    this.opponent2 = undefined;
     this.winnerIndex = null;
     this.loadItems();
     this.playButtonLabel = this.PLAY;
