@@ -28,6 +28,7 @@ export class BattleComponent implements OnInit {
   opponent1: any;
   opponent2: any;
   attribute = "";
+  drawLabel = "";
 
   constructor(
     private router: Router,
@@ -43,8 +44,12 @@ export class BattleComponent implements OnInit {
     if (this.opponent1 && this.opponent2) {
       const value1 = Number(this.opponent1[this.attribute]);
       const value2 = Number(this.opponent2[this.attribute]);
-      this.winnerIndex = value1 > value2 ? 0 : 1;
-      this.counter[this.winnerIndex]++;
+      if (value1 !== value2) {
+        this.winnerIndex = value1 > value2 ? 0 : 1;
+        this.counter[this.winnerIndex]++;
+      } else {
+        this.drawLabel = 'There is no winner!';
+      }
     }
   }
 
@@ -74,6 +79,7 @@ export class BattleComponent implements OnInit {
     this.opponent1 = undefined;
     this.opponent2 = undefined;
     this.winnerIndex = null;
+    this.drawLabel = '';
     this.loadItems();
     this.playButtonLabel = this.PLAY;
   }

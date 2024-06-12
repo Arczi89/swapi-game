@@ -1,12 +1,15 @@
 <div class="buttons">
   <button mat-button id="battle-back" class="buttons__back" (click)="goBack()">&#8592; Back</button>
-  <button mat-flat-button id="battle-play" class="buttons__play" (click)="play()">{{ playButtonLabel }}</button>
+  <button mat-flat-button id="battle-play" class="buttons__play" [disabled]="!opponent1 || !opponent2" (click)="play()">{{ playButtonLabel }}</button>
 </div>
 <div class="counter">
   <div class="counter__opponent counter__opponent--no1">{{counter[0]}}</div>
   <mat-progress-bar class="counter__progressbar" mode="determinate" [value]="ratio()"></mat-progress-bar>
   <div class="counter__opponent counter__opponent--no2">{{counter[1]}}</div>
 </div>
+@if (drawLabel) {
+  <div class="draw">{{drawLabel}}</div>
+}
 <div class="card">
   @if (opponent1 && opponent2) {
     @for (item of [opponent1, opponent2]; track $index) {

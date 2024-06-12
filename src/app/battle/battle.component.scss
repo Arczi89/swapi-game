@@ -68,6 +68,14 @@
   }
 }
 
+.draw {
+  display: flex;
+  font-size: 2rem;
+  font-weight: bold;
+  color:black;
+  justify-content: center;
+}
+
 :host {
   --mdc-linear-progress-track-height: 2rem;
   --mdc-linear-progress-active-indicator-height: 2rem;
